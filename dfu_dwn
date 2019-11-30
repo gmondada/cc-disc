@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp cc-disc.bin /tmp/__cc-disc.bin
+dfu-util -v -d 0483:df11 -a 0 -s 0x08000000 -D /tmp/__cc-disc.bin

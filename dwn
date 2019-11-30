@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case $0 in
+/*)     D=`dirname $0`;;
+*/*)    D=$PWD/`dirname $0`;;
+*)      D=$PWD;;
+esac
+
+BINFILE=$D/cc-disc.elf
+
+openocd \
+	-c "source [find interface/stlink-v2.cfg]" \
+	-c "source [find target/stm32f4x.cfg]" \
+	-c "init; reset halt; flash write_image erase $BINFILE; reset; exit"
